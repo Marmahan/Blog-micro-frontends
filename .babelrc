@@ -1,0 +1,13 @@
+// .babelrc
+{
+  "presets": [
+      [
+        "es2015", { "modules": false, "loose": true }],
+        "react",
+        "stage-0"
+    ],
+    "plugins": [
+      "syntax-dynamic-import",
+      "transform-object-rest-spread"
+    ]
+  }
