@@ -9,6 +9,7 @@ const NavBar = () => (
       <a href="/" onClick={navigateToUrl} className="brand-logo">single-spa</a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><a href="/" onClick={navigateToUrl}>Home</a></li>
+        <li><a href="/register" onClick={navigateToUrl}>New User</a></li>
         <li><a href="/about" onClick={navigateToUrl}>About</a></li>
         <li><a href="/contactus" onClick={navigateToUrl}>Contact us</a></li>
       </ul>

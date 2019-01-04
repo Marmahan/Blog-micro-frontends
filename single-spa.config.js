@@ -6,5 +6,6 @@ registerApplication('navBar', () => import ('./src/navBar/navBar.app.js').then( 
 registerApplication('home', () => import('./src/home/home.app.js'), () => location.pathname === "" || location.pathname === "/" || location.pathname.startsWith('/home'));
 registerApplication('contactus', () => import('./src/contactus/contactus.app.js'), () =>  location.pathname.startsWith('/contactus'));
 registerApplication('about', () => import('./src/about/about.app.js'), () =>  location.pathname.startsWith('/about'));
+registerApplication('register', () => import('./src/register/register.app.js'), () =>  location.pathname.startsWith('/register'));
 
 start();
