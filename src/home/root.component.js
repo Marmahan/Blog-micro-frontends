@@ -7,42 +7,53 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import Todo from './Todo';
-import Addtodo from './Addtodo'
+import Login from './login';
+import Allposts from './allposts';
 
 class Home extends React.Component{
   state={
-    todos:[
-      {id:1, content: 'Create a working micro frontends app'},
-      {id:2, content: 'Work out a little bit'}
-    ]
+    email: document.cookie || '',
+    islogged:''
   }
 
-  deleteTodo = (id) =>{
-    console.log(id);
-    const newtodos = this.state.todos.filter(todo => {
-      return todo.id !== id
-    })
-    this.setState({
-      todos:newtodos
-    })
-  }
 
-  addTodo = (todo) =>{
-    todo.id=this.state.todos.length + 1;
-    let newtodos=[...this.state.todos, todo];
+
+  setemail =(v)=>{
     this.setState({
-      todos:newtodos
-    })
+      email: this.state.email.concat(v)
+    },() => {
+      //localStorage.setItem('email', JSON.stringify(this.state.email))
+      var date = new Date();
+      var min=1;
+      date.setTime(date.getTime() + (min * 60 * 1000)); //1 min
+      window.document.cookie = 'email' + "=" + this.state.email + "; expires=" + date.toGMTString();
+      //document.cookie=this.state.email;
+    });
   }
 
   render(){
     return(
-      <div className='todoapp container'>
-        <h1 className='center blue-text'>Todo's</h1>
-        <Todo todos={this.state.todos} deleteTodo={this.deleteTodo} />
-        <Addtodo addTodo={this.addTodo}/>
-      </div>
+      this.state.email ? (
+        <div className="container">
+          <h1>Logged in successfuly {this.state.email.split('=').pop()}</h1>
+          <h5>It should show all the posts of the specific user</h5>
+          <Allposts />
+        </div>
+      ):
+      ( 
+        // <div className="container">
+        //   <div className="row">
+        //     <div className="col s12">
+        //       <Login setemail={this.setemail}/> {/*this will change the state from inside the login*/}
+        //     </div>
+        //   </div>
+        // </div>
+        <div className="container">
+          <Allposts />
+        </div>
+        
+      )
+
     )
   }
 }
